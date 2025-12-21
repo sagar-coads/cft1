@@ -79,17 +79,18 @@ const calculateCft = () =>{
     }
     h = inpArr[0] + (inpArr[1]/12)
     c = (inpArr[2]*12) + inpArr[3]
-    cft = ((c*c*h)/2304).toFixed(2);
+    cft = ((c*c*h)/2304).toFixed(3);
 
     totalCft+=Number(cft);
     eqn = `${inpArr[0]}-${inpArr[1]}-${inpArr[2]}-${inpArr[3]}`
 
-    totalCftBox.innerHTML = totalCft.toFixed(2)
+    totalCftBox.innerHTML = totalCft.toFixed(3)
     divFun()
 }
 
 totalCftBox.addEventListener('click',()=>{
     resWindow.style.overflowX = "auto"
 })
+
 
                 
