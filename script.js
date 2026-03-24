@@ -4,14 +4,23 @@ let serial = document.querySelector(".serial")
 let result = document.querySelector(".result")
 let resWindow = document.querySelector(".result-scroll")
 let totalCftBox = document.querySelector(".total")
+
 const deleteLine = () => {
     let line = resWindow.querySelector(`#line${slno}`)
     line.remove()
     slno-=1
     totalCft-=cft
+    if(slno == '0'){
+        cft = 0;
+    }
+    else{
+        cft= Number(document.querySelector(`#line${slno} .result`).innerText)
+    }
+    
     totalCftBox.innerHTML = totalCft.toFixed(2)
     
 }
+
 
 let slno = 0;
 let totalCft = 0;
@@ -24,6 +33,7 @@ arr.forEach(button => {
             string = "";
             input.value = string;
             resWindow.style.overflowX == "auto" ? resWindow.style.overflowX = "":resWindow.style.overflowX = "";
+
         }
 
         else if(e.target.id == 'allclear'){
@@ -92,6 +102,26 @@ totalCftBox.addEventListener('click',()=>{
     resWindow.style.overflowX = "auto"
 })
 
+document.getElementById("#downloadButton").addEventListener("click", downloadDivAsJpg);
 
-                
+function downloadDivAsJpg() {
+    const now = new Date();
 
+    const fileName =
+        now.getFullYear() + "-" +
+        String(now.getMonth() + 1).padStart(2, '0') + "-" +
+        String(now.getDate()).padStart(2, '0') + "_" +
+        String(now.getHours()).padStart(2, '0') + "-" +
+        String(now.getMinutes()).padStart(2, '0') + "-" +
+        String(now.getSeconds()).padStart(2, '0') +
+        ".jpg";
+
+    html2canvas(resWindow).then(canvas => {
+        const jpgData = canvas.toDataURL("image/jpeg", 0.9);
+
+        const link = document.createElement("a");
+        link.download = fileName;  
+        link.href = jpgData;
+        link.click();
+    });
+}
