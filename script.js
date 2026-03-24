@@ -105,8 +105,20 @@ totalCftBox.addEventListener('click',()=>{
 document.getElementById("#downloadButton").addEventListener("click", downloadDivAsJpg);
 
 function downloadDivAsJpg() {
-    const now = new Date();
 
+    let it = document.createElement("div");
+    it.className = "line"
+    it.id = `printTotal`
+    it.innerHTML = `<div class="serial">
+                        TOTAL
+                    </div>
+                    
+                    <div class="result">
+                        ${totalCft.toFixed(2)}
+                    </div>`
+    resWindow.append(it)
+
+    const now = new Date();
     const fileName =
         now.getFullYear() + "-" +
         String(now.getMonth() + 1).padStart(2, '0') + "-" +
@@ -124,4 +136,6 @@ function downloadDivAsJpg() {
         link.href = jpgData;
         link.click();
     });
+
+    document.getElementById("printTotal").remove();
 }
