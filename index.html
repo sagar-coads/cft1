@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CFT calculator</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
+    
+
     <div class="container">
         <div class="result-display">
             <div class="result-scroll">
@@ -14,7 +17,7 @@
             </div>
         </div>
         <div id="input-box">
-            
+            <div id="downloadButton" onclick="downloadDivAsJpg()"><i class="fa-solid fa-angle-down"></i></div>
             <input type="text" placeholder="0" >
         </div> 
         <div class="keypad">
@@ -38,5 +41,6 @@
         </div>
     </div>
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </body>
 </html>
